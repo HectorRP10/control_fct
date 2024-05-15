@@ -4,11 +4,6 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-}
-
 header {
     display: flex;
     align-items: center;
@@ -21,8 +16,6 @@ header {
 .logo {
     max-height: 65px;
 }
-
-
 
 .nav_header {
     flex-grow: 1;
@@ -75,12 +68,4 @@ header {
         text-align: center;
         padding: 12px 0;
     }
-}
-
-h1{
-    display: flex;
-    text-align: center;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    color: black;
-    font-weight: bold;
 }
