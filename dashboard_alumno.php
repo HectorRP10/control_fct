@@ -12,7 +12,7 @@
         <nav class="nav_header" >
             <ul class="ul_header">
                 <li><a href="#Editar Perfil">Editar Perfil</a></li>
-                <li><a href="#Preferencias">Preferencias</a></li>
+                <li><a href="alumnoPrioridad.php">Preferencias</a></li>
                 <li><a href="#historial estados">Historial Estados</a></li>
                 <li><a href="login.php">Cerrar sesión</a></li>
             </ul>
