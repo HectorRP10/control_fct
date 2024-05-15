@@ -51,7 +51,8 @@ input[type='submit']{
 .bad {
     text-align: center;
     width: 100%;
-    padding: 12px;
-    background-color: #a22;
+    margin: 40px;
+    padding: 17px;
+    background-color: rgb(7, 0, 0);
     color: #fff
 }
