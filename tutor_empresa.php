@@ -23,8 +23,6 @@
 
 <body>
     
-
-
     <header>
         <img class="logo" src="https://aulavirtual.elcampico.org/pluginfile.php/1/core_admin/logocompact/300x300/1711458408/logo__.png" alt="El Campico Logo">
         
@@ -33,7 +31,7 @@
                 <li><a href="#alumnos">Alumnos</a></li>
                 <li><a href="#empresas">Empresas</a></li>
                 <li><a href="#instructores">Instructores</a></li>
-                <li><a href="#cerrar-sesion">Cerrar sesión</a></li>
+                <li><a href="login.php">Cerrar sesión</a></li>
             </ul>
         </nav>
     </header>

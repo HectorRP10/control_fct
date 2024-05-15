@@ -41,7 +41,7 @@ header {
     align-items: center;
 }
 
-.ul_header a {
+.navoptions {
     color: #ffffff; 
     text-decoration: none;
     font-size: 16px;
@@ -50,7 +50,7 @@ header {
     transition: background-color 0.3s ease;
 }
 
-.ul_header a:hover {
+.navoptions:hover {
     background-color: #06a00e; 
 }
 
