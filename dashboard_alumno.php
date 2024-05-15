@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Dashboard_alumno</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<link rel="stylesheet" type="text/css" href="dashboard_alumno.css">
+	<link rel="stylesheet" type="text/css" href="alumnonav.css">
 </head>
 <body>
 <header>
