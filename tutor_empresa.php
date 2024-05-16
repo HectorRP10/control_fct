@@ -34,6 +34,7 @@
                 <li><a href="#empresas">Empresas</a></li>
                 <li><a href="#instructores">Instructores</a></li>
                 <li><a href="#cerrar-sesion">Cerrar sesión</a></li>
+            
             </ul>
         </nav>
     </header>
