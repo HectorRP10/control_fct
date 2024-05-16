@@ -43,7 +43,7 @@
 
     <h1>Listado de Empresas</h1>
     <button onclick="window.location.href = 'NuevaEmpresa.php';">Nueva Empresa</button>
-    <button>Modificar Empresa</button>
+    <button onclick="window.location.href = 'ModificarEmpresa.php';">Modificar Empresa</button>
    
 
 
@@ -127,7 +127,7 @@
   
   
             echo "<table border='2'>";
-            echo "<tr><th>Nombre</th><th>Cif</th><th>Nombre Fiscal</th><th>Email</th><th>Dirección</th><th>Provincia</th><th>Número Plazas</th><th>Teléfono</th><th>Persona Contacto</th></tr>";
+            echo "<tr><th>Nombre</th><th>Cif</th><th>Nombre Fiscal</th><th>Email</th><th>Dirección</th><th>Provincia</th><th>Número Plazas</th><th>Teléfono</th><th>Persona Contacto</th><th>Eliminar</th></tr>";
 
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)) { 
                 echo "<tr>";
@@ -140,6 +140,14 @@
                 echo "<td>".$row['numero_plazas']."</td>";
                 echo "<td>".$row['telefono']."</td>";
                 echo "<td>".$row['persona_contacto']."</td>";
+
+                echo "<td>
+                <form action='BorrarEmpresa.php' method='POST'>
+                    <input type='hidden' name='nombre' value='".$row['nombre']."'>
+                    <input type='hidden' name='cif' value='".$row['cif']."'>
+                    <input type='submit' name='eliminar' value='eliminar'>
+                </form>
+              </td>";
 
                 echo "</tr>";
             }
