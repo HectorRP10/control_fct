@@ -17,7 +17,7 @@
 	<meta charset="utf-8">
 	<title>Document</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<link rel="stylesheet" type="text/css" href="tutorempresa.css">
+	<link rel="stylesheet" type="text/css" href="Tutorempresa.css">
 
 </head>
 
@@ -41,8 +41,11 @@
     
 
 
-    <h1>Lista de empresas</h1>
-    <button>Crear nueva</button>
+    <h1>Listado de Empresas</h1>
+    <button onclick="window.location.href = 'NuevaEmpresa.php';">Nueva Empresa</button>
+    <button>Modificar Empresa</button>
+    <button>Borrar Empresa</button>
+
 
     <form action="tutor_empresa.php" method='post'>
         <label for ="nombre">Nombre: </label>
@@ -117,7 +120,7 @@
                 $params[':persona_contacto'] = "%$persona_contacto%";
             }
 
-            $sql .= " LIMIT 15";
+            $sql .= " LIMIT 10";
             $stmt = $pdo->prepare($sql);
             $stmt->execute($params);
 
