@@ -117,7 +117,7 @@
                 $params[':persona_contacto'] = "%$persona_contacto%";
             }
 
-            $sql .= " LIMIT 10";
+            $sql .= " LIMIT 15";
             $stmt = $pdo->prepare($sql);
             $stmt->execute($params);
 
