@@ -44,14 +44,14 @@
     <h1>Listado de Empresas</h1>
     <button onclick="window.location.href = 'NuevaEmpresa.php';">Nueva Empresa</button>
     <button>Modificar Empresa</button>
-    <button>Borrar Empresa</button>
+   
 
 
     <form action="tutor_empresa.php" method='post'>
         <label for ="nombre">Nombre: </label>
         <input type="text" name="nombre" value="<?php echo isset ($_POST['nombre']) ? $_POST['nombre'] : $nombre?>">
         <input type="submit" value="Filtrar">
-        <input type="button" value="Reset" >
+        <input type="reset" value="Reset" >
     </form>
 
 
