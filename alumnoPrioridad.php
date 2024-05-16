@@ -27,29 +27,36 @@
 
     <h1 class="text-center p-3">Elegir Prioridades</h1>
     <div class="container-fluid row">
-        <form class="col-4 p-3" method="post">
-            <h3 class="text-center text-secondary">Registro de elección</h3>
+        <form class="col-2 p-3" method="post">
+            <h3 class="text-center text-secondary">Nueva Elección</h3>
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Código de la Empresa</label>
+                <label class="form-label">Código de la Empresa</label>
                 <input type="text" class="form-control" name="codigo">
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Año</label>
+                <label class="form-label">Año</label>
                 <input type="number" class="form-control" name="anyo">
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Periodo</label>
+                <label class="form-label">Periodo</label>
                 <input type="text" class="form-control" name="periodo">
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Orden</label>
+                <label class="form-label">Orden</label>
                 <input type="text" class="form-control" name="orden">
             </div>
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
-        <div class="col-8 p-4">
+        <div class="col-7 p-4">
+        <form action="" method="get">
+                <div>
+                    <input type="text" name="busqueda" placeholder="Nombre">
+                    <input type="submit" name="enviar" value="Buscar">
+                </div>
+              
+            </form>
             <table class="table">
-                <thead class="bg-info">
+                <thead>
                     <tr>
                         <th scope="col">nombre</th>
                         <th scope="col">cif</th>
@@ -64,25 +71,48 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
+                    <?php
+                    $conexion = new mysqli("localhost", "root", "", "pruebalogin");
+                    $conexion->set_charset("utf8");
+                    $sql = $conexion->query("select * from empresa LIMIT 6");
+                    if (!isset($_GET["enviar"])) {
+                        while ($datos = $sql->fetch_object()) { ?>
+                            <tr>
+                                <td><?= $datos->nombre ?></td>
+                                <td><?= $datos->cif ?></td>
+                                <td><?= $datos->nombre_fiscal ?></td>
+                                <td><?= $datos->email ?></td>
+                                <td><?= $datos->direccion ?></td>
+                                <td><?= $datos->localidad ?></td>
+                                <td><?= $datos->provincia ?></td>
+                                <td><?= $datos->numero_plazas ?></td>
+                                <td><?= $datos->telefono ?></td>
+                                <td><?= $datos->persona_contacto ?></td>
+                            </tr>
+                        <?php }
+                    } else {
+                        $busqueda = $_GET["busqueda"];
+                        $sql_busqueda = $conexion->query("select * from empresa where nombre LIKE '%$busqueda' LIMIT 6");
+                        while ($datos_busqueda = $sql_busqueda->fetch_object()) { ?>
+                            <tr>
+                                <td><?= $datos_busqueda->nombre ?></td>
+                                <td><?= $datos_busqueda->cif ?></td>
+                                <td><?= $datos_busqueda->nombre_fiscal ?></td>
+                                <td><?= $datos_busqueda->email ?></td>
+                                <td><?= $datos_busqueda->direccion ?></td>
+                                <td><?= $datos_busqueda->localidad ?></td>
+                                <td><?= $datos_busqueda->provincia ?></td>
+                                <td><?= $datos_busqueda->numero_plazas ?></td>
+                                <td><?= $datos_busqueda->telefono ?></td>
+                                <td><?= $datos_busqueda->persona_contacto ?></td>
+                            </tr>
+                        <?php }
+                    }
+                    ?>
+
                 </tbody>
             </table>
+           
         </div>
     </div>
 
