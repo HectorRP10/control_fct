@@ -77,25 +77,6 @@ header {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
@@ -136,10 +117,10 @@ form {
 }
 
 form label {
-    width: 100px; /* Ancho fijo para los labels */
+    width: 100px; 
     text-align: right;
     padding-right: 10px;
-    flex: 0 0 auto; /* No se expande */
+    flex: 0 0 auto; 
     margin-bottom: 5px;
     margin-top: 15px;
 }
@@ -171,10 +152,3 @@ th {
 td {
     background-color: #fff;
 }
-
-
-
-
-
-
-

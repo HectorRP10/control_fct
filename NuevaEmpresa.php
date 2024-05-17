@@ -26,6 +26,13 @@ if ($_POST) {
         $stmt = $pdo->prepare($sql);
         $row = $stmt->execute($datos);
 
+        //Este bucle if sirve para mandar una alerta, tanto si se actualiza bien como si no
+        if ($stmt->rowCount() == 1) {
+            echo "<script>alert('La empresa [$nombre] se actualizó correctamente'); location.href='tutor_empresa.php';</script>";
+        } else {
+            echo "<script>alert('La empresa [$nombre] no se actualizó correctamente'); location.href='tutor_empresa.php';</script>";
+        }
+
 
     } catch (PDOException $e) {
         echo "Se ha producido un error al intentar conectar al servidor MySQL: " . $e->getMessage();
@@ -76,7 +83,7 @@ if ($_POST) {
         <label for="persona_contacto">Persona Contacto :</label>
         <input type="text" name="persona_contacto" id="persona_contacto" >
 
-        <input type="submit" value="Insertar">
+        <input type="submit" value="Insertar" >
         <input type="reset" value="Reset">
     </form>
 </body>

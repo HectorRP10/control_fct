@@ -4,6 +4,7 @@
   $nombre_fiscal = $_POST["nombre_fiscal"] ?? null; 
   $email = $_POST["email"] ?? null; 
   $direccion = $_POST["direccion"] ?? null; 
+  $localidad = $_POST["localidad"] ?? null; 
   $provincia = $_POST["provincia"] ?? null; 
   $numero_plazas = $_POST["numero_plazas"] ?? null; 
   $telefono = $_POST["telefono"] ?? null; 
@@ -22,30 +23,24 @@
 </head>
 
 <body>
-    
-
 
     <header>
         <img class="logo" src="https://aulavirtual.elcampico.org/pluginfile.php/1/core_admin/logocompact/300x300/1711458408/logo__.png" alt="El Campico Logo">
         
         <nav class="nav_header" id="nav_header">
             <ul class="ul_header">
-                <li><a href="#alumnos">Alumnos</a></li>
-                <li><a href="#empresas">Empresas</a></li>
+                <li><a href="#alumnos" >Alumnos</a></li>
+                <li><a href="#empresas" onclick="window.location.href = 'tutor_empresa.php';">Empresas</a></li>
                 <li><a href="#instructores">Instructores</a></li>
+                <li><a href="#principal">Principal</a></li>
                 <li><a href="#cerrar-sesion">Cerrar sesión</a></li>
             </ul>
         </nav>
     </header>
-    
-    
-
 
     <h1>Listado de Empresas</h1>
     <button onclick="window.location.href = 'NuevaEmpresa.php';">Nueva Empresa</button>
-    <button onclick="window.location.href = 'ModificarEmpresa.php';">Modificar Empresa</button>
    
-
 
     <form action="tutor_empresa.php" method='post'>
         <label for ="nombre">Nombre: </label>
@@ -63,7 +58,6 @@
         $dbname='control_fct';
         $user='root';
         $pass=''; 
-
 
 
         try {
@@ -84,7 +78,6 @@
                 $params[':nombre'] = "%$cif%";
             }
   
-            
             if($nombre_fiscal){
                 $sql.="AND nombre_fiscal LIKE :nombre_fiscal";
                 $params[':nombre_fiscal'] = "%$nombre_fiscal%";
@@ -98,6 +91,11 @@
             if($direccion){
                 $sql.="AND direccion LIKE :direccion";
                 $params[':direccion'] = "%$direccion%";
+            }
+
+            if($localidad){
+                $sql.="AND localidad LIKE :localidad";
+                $params[':localidad'] = "%$localidad%";
             }
 
             if($provincia){
@@ -120,14 +118,13 @@
                 $params[':persona_contacto'] = "%$persona_contacto%";
             }
 
-            $sql .= " LIMIT 10";
+            $sql .= " LIMIT 8";
             $stmt = $pdo->prepare($sql);
             $stmt->execute($params);
 
   
-  
             echo "<table border='2'>";
-            echo "<tr><th>Nombre</th><th>Cif</th><th>Nombre Fiscal</th><th>Email</th><th>Dirección</th><th>Provincia</th><th>Número Plazas</th><th>Teléfono</th><th>Persona Contacto</th><th>Eliminar</th></tr>";
+            echo "<tr><th>Nombre</th><th>Cif</th><th>Nombre Fiscal</th><th>Email</th><th>Dirección</th><th>Localidad</th><th>Provincia</th><th>Número Plazas</th><th>Teléfono</th><th>Persona Contacto</th><th>Eliminar</th><th>Editar</th></tr>";
 
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)) { 
                 echo "<tr>";
@@ -136,18 +133,36 @@
                 echo "<td>".$row['nombre_fiscal']."</td>";
                 echo "<td>".$row['email']."</td>";
                 echo "<td>".$row['direccion']."</td>";
+                echo "<td>".$row['localidad']."</td>";
                 echo "<td>".$row['provincia']."</td>";
                 echo "<td>".$row['numero_plazas']."</td>";
                 echo "<td>".$row['telefono']."</td>";
                 echo "<td>".$row['persona_contacto']."</td>";
 
+                //Estos dos formularios aqui, tienen como finalidad que todas las filas tengan un boton de eliminar y editar
                 echo "<td>
-                <form action='BorrarEmpresa.php' method='POST'>
-                    <input type='hidden' name='nombre' value='".$row['nombre']."'>
-                    <input type='hidden' name='cif' value='".$row['cif']."'>
-                    <input type='submit' name='eliminar' value='eliminar'>
-                </form>
-              </td>";
+                    <form action='BorrarEmpresa.php' method='POST'>
+                        <input type='hidden' name='nombre' value='".$row['nombre']."'>
+                        <input type='hidden' name='cif' value='".$row['cif']."'>
+                        <input type='submit' name='eliminar' value='Eliminar'>
+                    </form>
+                </td>";
+
+                echo "<td>
+                    <form action='ModificarEmpresa.php' method='POST'>
+                        <input type='hidden' name='nombre' value='".$row['nombre']."'>
+                        <input type='hidden' name='cif' value='".$row['cif']."'>
+                        <input type='hidden' name='nombre_fiscal' value='".$row['nombre_fiscal']."'>
+                        <input type='hidden' name='email' value='".$row['email']."'>
+                        <input type='hidden' name='direccion' value='".$row['direccion']."'>
+                        <input type='hidden' name='localidad' value='".$row['localidad']."'>
+                        <input type='hidden' name='provincia' value='".$row['provincia']."'>
+                        <input type='hidden' name='numero_plazas' value='".$row['numero_plazas']."'>
+                        <input type='hidden' name='telefono' value='".$row['telefono']."'>
+                        <input type='hidden' name='persona_contacto' value='".$row['persona_contacto']."'>                        
+                        <input type='submit' name='editar' value='Editar'>
+                    </form>
+                </td>";
 
                 echo "</tr>";
             }
