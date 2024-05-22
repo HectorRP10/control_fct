@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px 35px;
+    background-color: #2b852b; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    max-height: 65px;
+}
+
+
+
+.nav_header {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.ul_header {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.ul_header li {
+    display: flex;
+    align-items: center;
+}
+
+.ul_header a {
+    color: #ffffff; 
+    text-decoration: none;
+    font-size: 16px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.ul_header a:hover {
+    background-color: #06a00e; 
+}
+
+/* Media query para el efecto responsive */
+@media (max-width: 700px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav_header {
+        width: 100%;
+    }
+
+    .ul_header {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .ul_header a {
+        width: 100%;
+        text-align: center;
+        padding: 12px 0;
+    }
+}
+
+
+
+
+
+h1 {
+    text-align: center;
+    color: black;
+    margin-top: 10px;
+
+}
+h3{
+    margin-top: 20px;
+    margin-left: 20px;
+    color: black;
+}
+
+
+form {
+    max-width: 600px;
+    margin: 0 auto; 
+    padding: 20px;
+    background: #f4f7f6;
+    border-radius: 5px;
+    margin-left: 0; 
+    margin-right: auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="submit"],
+input[type="reset"] {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+    background-color: #45a049;
+}
