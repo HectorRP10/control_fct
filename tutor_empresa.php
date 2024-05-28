@@ -29,10 +29,10 @@
         
         <nav class="nav_header" id="nav_header">
             <ul class="ul_header">
+                <li><a href="#principal" onclick="window.location.href = 'dashboard_tutor.php';">Home</a></li>            
                 <li><a href="#alumnos" >Alumnos</a></li>
                 <li><a href="#empresas" onclick="window.location.href = 'tutor_empresa.php';">Empresas</a></li>
                 <li><a href="#instructores">Instructores</a></li>
-                <li><a href="#principal">Principal</a></li>            
                 <li><a href="login.php">Cerrar sesión</a></li>
             </ul>
         </nav>

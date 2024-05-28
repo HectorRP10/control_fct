@@ -26,6 +26,7 @@
         </nav>
     </header>
 
+    <h1>Prácticas en curso</h1>
     <button onclick="window.location.href = 'NuevaPractica.php';">Asignar Práctica</button>
 
     <form action="dashboard_tutor.php" method='post'>
@@ -82,14 +83,14 @@
 
                 //Estos dos formularios aqui, tienen como finalidad que todas las filas tengan un boton de historico de contactos y modificar estado
                 echo "<td>
-                    <form action='ModificarEmpresa.php' method='POST'>
+                    <form action='' method='POST'>
 
                         <input type='submit' name='Historial' value='Historial'>
                     </form>
                 </td>";
 
                 echo "<td>
-                    <form action='ModificarEmpresa.php' method='POST'>
+                    <form action='' method='POST'>
                     <input type='submit' name='Modificar' value='Modificar'>
 
                     </form>
