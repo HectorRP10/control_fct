@@ -49,7 +49,7 @@
             $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass); //creamos el objeto pdo
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $sql="SELECT * FROM practica where true ";
+            $sql="SELECT p.*, eh.estado_id, eh.comentario FROM practica p LEFT JOIN estados_historico eh ON p.id = eh.practica_id AND eh.fecha = ( SELECT MAX(fecha) FROM estados_historico WHERE practica_id = p.id) WHERE TRUE";
 
             $params= array();
 
@@ -82,7 +82,10 @@
                 echo "<td>".$row['instructor_id']."</td>";
 
                 //Estos dos formularios aqui, tienen como finalidad que todas las filas tengan un boton de historico de contactos y modificar estado
+
                 echo "<td>
+                    ".$row['comentario']."
+
                     <form action='' method='POST'>
 
                         <input type='submit' name='Historial' value='Historial'>
@@ -90,8 +93,11 @@
                 </td>";
 
                 echo "<td>
+                    ".$row['estado_id']."
+
                     <form action='' method='POST'>
-                    <input type='submit' name='Modificar' value='Modificar'>
+
+                        <input type='submit' name='Modificar' value='Modificar'>
 
                     </form>
                 </td>";
