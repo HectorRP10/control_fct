@@ -1,4 +1,10 @@
 <?php
+    session_start();
+
+    if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+        header('Location: login.php');
+        exit;
+    }
   $nombre = $_POST["nombre"] ?? null; 
   $cif = $_POST["cif"] ?? null; 
   $nombre_fiscal = $_POST["nombre_fiscal"] ?? null; 
@@ -28,14 +34,14 @@ if ($_POST) {
 
         //Este bucle if sirve para mandar una alerta, tanto si se actualiza bien como si no
         if ($stmt->rowCount() == 1) {
-            echo "<script>alert('La empresa [$nombre] se actualizó correctamente'); location.href='tutor_empresa.php';</script>";
+            echo "<script>alert('La empresa [$nombre] se creó correctamente'); location.href='tutor_empresa.php';</script>";
         } else {
-            echo "<script>alert('La empresa [$nombre] no se actualizó correctamente'); location.href='tutor_empresa.php';</script>";
+            echo "<script>alert('La empresa [$nombre] no se creó correctamente'); location.href='tutor_empresa.php';</script>";
         }
 
 
     } catch (PDOException $e) {
-        echo "Se ha producido un error al intentar conectar al servidor MySQL: " . $e->getMessage();
+        echo "La empresa $nombre ya existe, o no se ha podido crear";
     }
 }
 ?>

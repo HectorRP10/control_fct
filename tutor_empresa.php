@@ -1,4 +1,13 @@
 <?php
+
+    session_start();
+
+    if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+        header('Location: login.php');
+        exit;
+    }
+
+
   $nombre = $_POST["nombre"] ?? null; 
   $cif = $_POST["cif"] ?? null; 
   $nombre_fiscal = $_POST["nombre_fiscal"] ?? null; 
@@ -9,6 +18,12 @@
   $numero_plazas = $_POST["numero_plazas"] ?? null; 
   $telefono = $_POST["telefono"] ?? null; 
   $persona_contacto = $_POST["persona_contacto"] ?? null; 
+
+  $pag_actual=$_POST['pag_actual'] ?? 1;
+  $pag_siguiente = $pag_actual+1;
+  $pag_anterior= $pag_actual-1;
+  $pag_ultima;
+  $pag_primera=1;
 
 ?>
 
@@ -167,6 +182,21 @@
                 echo "</tr>";
             }
             echo "</table>";
+
+
+
+
+
+
+
+            
+            echo "<form action='tutor_empresa.php' method='POST'>";
+            echo "<input type='hidden' name='page' value='$pag_actual'>";
+            echo "<input type='submit' name='prev' value='<<'>";
+            echo "<input type='submit' name='prev' value='<'>";
+            echo "<input type='submit' name='next' value='>'>";
+            echo "<input type='submit' name='next' value='>>'>";
+            echo "</form>";
   
   
         }
@@ -174,6 +204,10 @@
             echo "Se ha producido un error al intentar conectar al servidor MySQL: ".$e->getMessage();
         }
     ?>
+
+
+    
+
     
 </body>
 </html>

@@ -1,3 +1,11 @@
+<?php
+    session_start();
+
+    if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+        header('Location: login.php');
+        exit;
+    }
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -72,7 +80,7 @@
                 </thead>
                 <tbody>
                     <?php
-                    $conexion = new mysqli("localhost", "root", "", "pruebalogin");
+                    $conexion = new mysqli("localhost", "root", "", "control_fct");
                     $conexion->set_charset("utf8");
                     $sql = $conexion->query("select * from empresa LIMIT 6");
                     if (!isset($_GET["enviar"])) {

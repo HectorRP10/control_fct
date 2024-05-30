@@ -1,4 +1,10 @@
 <?php
+    session_start();
+
+    if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+        header('Location: login.php');
+        exit;
+    }
     $nombre = $_POST["nombre"] ?? null;
     $cif = $_POST["cif"] ?? null;
     $nombre_fiscal = $_POST["nombre_fiscal"] ?? null;
@@ -52,7 +58,7 @@
             if ($stmt->rowCount() == 1) {
                 echo "<script>alert('La empresa [$nombre] se insertó correctamente'); location.href='tutor_empresa.php';</script>";
             } else {
-                echo "<script>alert('La empresa [$nombre] no se insertó correctamente'); location.href='tutor_empresa.php';</script>";
+                echo "<script>alert('La empresa [$nombre] no se modificó'); location.href='tutor_empresa.php';</script>";
             }
         }
 

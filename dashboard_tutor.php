@@ -1,8 +1,13 @@
 <?php
+    session_start();
+
+    if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+        header('Location: login.php');
+        exit;
+    }
     $alumno_id = $_POST["alumno_id"] ?? null; 
     $empresa_id = $_POST["empresa_id"] ?? null; 
     $instructor_id = $_POST["instructor_id"] ?? null; 
-
 ?>
 
 <!DOCTYPE html>
@@ -96,6 +101,7 @@
                     ".$row['estado_id']."
 
                     <form action='' method='POST'>
+                        
 
                         <input type='submit' name='Modificar' value='Modificar'>
 
@@ -105,12 +111,9 @@
                 echo "</tr>";
             }    
 
-
         }catch(PDOException $e) {
             echo "Se ha producido un error al intentar conectar al servidor MySQL: ".$e->getMessage();
         }
-
-
 
     ?>
 </body> 

@@ -1,3 +1,11 @@
+<?php
+    session_start();
+
+    if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+        header('Location: login.php');
+        exit;
+    }
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,28 +49,29 @@
                 $nombre = $_POST["nombre"] ?? null; 
 
 
-                if ($_POST) {
-                    $host = 'localhost';
-                    $dbname = 'control_fct';
-                    $user = 'root';
-                    $pass = '';
+                $host = 'localhost';
+                $dbname = 'control_fct';
+                $user = 'root';
+                $pass = '';
 
-                    try {
-                        $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
-                        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+                try {
+                    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
+                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                    if (isset($_POST["update"])) {
                         $sql = "INSERT INTO practica VALUES (:id, :alumno_id, :empresa_id, :tutor_id, :instructor_id, :fecha_inicio, :fecha_fin, :fecha_confirmacion, :curso_nombre, :curso)";
                         $datos = [":id" => $id, ":alumno_id" => $alumno_id, ":empresa_id" => $empresa_id, ":tutor_id" => $tutor_id, ":instructor_id" => $instructor_id, ":fecha_inicio" => $fecha_inicio, ":fecha_fin" => $fecha_fin, ":fecha_confirmacion" => $fecha_confirmacion, ":curso_nombre" => $curso_nombre, ":curso" => $curso];
                         $stmt = $pdo->prepare($sql);
                         $row = $stmt->execute($datos);
-
+                    }
                         
 
 
-                    } catch (PDOException $e) {
-                        echo " " ;
-                    }
+                } catch (PDOException $e) {
+                    echo "Error: " . $e->getMessage();
                 }
+                
             ?>
 
 
