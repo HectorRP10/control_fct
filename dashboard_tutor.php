@@ -101,7 +101,6 @@
                     ".$row['estado_id']."
 
                     <form action='' method='POST'>
-                        
 
                         <input type='submit' name='Modificar' value='Modificar'>
 

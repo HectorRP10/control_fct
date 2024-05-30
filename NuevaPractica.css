@@ -133,11 +133,6 @@ input[type="reset"]:hover {
     background-color: #45a049;
 }
 
-
-
-
-
-
 .container {
     display: flex;
 }
@@ -170,4 +165,3 @@ th, td {
 th {
     background-color: #f2f2f2;
 }
-

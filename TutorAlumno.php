@@ -56,13 +56,11 @@
 
     
     <?php 
-
         # Conectamos a la base de datos
         $host='localhost';
         $dbname='control_fct';
         $user='root';
         $pass=''; 
-
 
         try {
             $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass); //creamos el objeto pdo

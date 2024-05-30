@@ -28,8 +28,6 @@
         </nav>
     </header>
 
-
-
     <h1>Asignar Prácticas</h1>
     <h3>Crear una nueva práctica</h3>
 
@@ -48,12 +46,10 @@
                 $curso = $_POST["curso"] ?? null; 
                 $nombre = $_POST["nombre"] ?? null; 
 
-
                 $host = 'localhost';
                 $dbname = 'control_fct';
                 $user = 'root';
                 $pass = '';
-
 
                 try {
                     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
@@ -65,15 +61,12 @@
                         $stmt = $pdo->prepare($sql);
                         $row = $stmt->execute($datos);
                     }
-                        
-
 
                 } catch (PDOException $e) {
                     echo "Error: " . $e->getMessage();
                 }
                 
             ?>
-
 
             <form action="NuevaPractica.php" method="post">
 
@@ -175,7 +168,7 @@
   
                 }
                 catch(PDOException $e) {
-                    echo " ";
+                    echo "Error: " . $e->getMessage();
                 }
             ?>
         </div>

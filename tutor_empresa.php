@@ -62,8 +62,6 @@
         <input type="submit" value="Filtrar">
         <input type="reset" value="Reset" >
     </form>
-
-
     
     <?php 
 
@@ -182,12 +180,6 @@
             }
             echo "</table>";
 
-
-
-
-
-
-
             
             echo "<form action='tutor_empresa.php' method='POST'>";
             echo "<input type='hidden' name='page' value='$pag_actual'>";
@@ -203,10 +195,6 @@
             echo "Se ha producido un error al intentar conectar al servidor MySQL: ".$e->getMessage();
         }
     ?>
-
-
-    
-
     
 </body>
 </html>

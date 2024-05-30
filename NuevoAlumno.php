@@ -13,33 +13,33 @@
 
 
 
-if ($_POST) {
-    $host = 'localhost';
-    $dbname = 'control_fct';
-    $user = 'root';
-    $pass = '';
+    if ($_POST) {   
+        $host = 'localhost';
+        $dbname = 'control_fct';
+        $user = 'root';
+        $pass = '';
 
-    try {
-        $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        try {
+            $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = "INSERT INTO alumno (email, nia, telefono, nombre) VALUES (:email, :nia, :telefono, :nombre)";
-        $datos = [":nombre" => $nombre, ":email" => $email, ":telefono" => $telefono, ":nia" => $nia];
-        $stmt = $pdo->prepare($sql);
-        $row = $stmt->execute($datos);
+            $sql = "INSERT INTO alumno (email, nia, telefono, nombre) VALUES (:email, :nia, :telefono, :nombre)";
+            $datos = [":nombre" => $nombre, ":email" => $email, ":telefono" => $telefono, ":nia" => $nia];
+            $stmt = $pdo->prepare($sql);
+            $row = $stmt->execute($datos);
 
-        //Este bucle if sirve para mandar una alerta, tanto si se actualiza bien como si no
-        if ($stmt->rowCount() == 1) {
+            //Este bucle if sirve para mandar una alerta, tanto si se actualiza bien como si no
+            if ($stmt->rowCount() == 1) {
             echo "<script>alert('El alumno [$nombre] se creó correctamente'); location.href='TutorAlumno.php';</script>";
-        } else {
-            echo "<script>alert('El alumno [$nombre] no se creó correctamente'); location.href='TutorAlumno.php';</script>";
+            } else {
+                echo "<script>alert('El alumno [$nombre] no se creó correctamente'); location.href='TutorAlumno.php';</script>";
+            }
+
+
+        } catch (PDOException $e) {
+            echo "El alumno $nombre ya existe, o no se ha podido crear";
         }
-
-
-    } catch (PDOException $e) {
-        echo "El alumno $nombre ya existe, o no se ha podido crear";
     }
-}
 ?>
 
 <!DOCTYPE html>
