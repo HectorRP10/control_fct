@@ -13,6 +13,7 @@
   $nia = $_POST["nia"] ?? null; 
   $telefono = $_POST["telefono"] ?? null; 
   $cv_file = $_POST["cv_file"] ?? null; 
+  $nia = $_POST["nia"] ?? null; 
 
 ?>
 
@@ -91,6 +92,11 @@
                 $params[':telefono'] = "%$telefono%";
             }
 
+            if($nia){
+                $sql.="AND nia LIKE :nia";
+                $params[':nia'] = "%$nia%";
+            }
+
 
             $sql .= " LIMIT 8";
             $stmt = $pdo->prepare($sql);
@@ -98,12 +104,13 @@
 
   
             echo "<table border='2'>";
-            echo "<tr><th>Nombre</th><th>Email</th><th>Teléfono</th><th>Currículum</th></tr>";
+            echo "<tr><th>Nombre</th><th>Email</th><th>NIA</th><th>Teléfono</th><th>Currículum</th></tr>";
 
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)) { 
                 echo "<tr>";
                 echo "<td>".$row['nombre']."</td>";
                 echo "<td>".$row['email']."</td>";
+                echo "<td>".$row['nia']."</td>";
                 echo "<td>".$row['telefono']."</td>";
                 echo "<td>".$row['cv_file']."</td>";
 
